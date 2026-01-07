@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMeet Attendance</title>
+  <style>
+    body {
+      width: 300px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 15px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #202124;
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 13px;
+      transition: background-color 0.2s;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #startBtn {
+      background-color: #1a73e8;
+      color: white;
+    }
+
+    #startBtn:hover:not(:disabled) {
+      background-color: #1557b0;
+    }
+
+    #stopBtn {
+      background-color: #d93025;
+      color: white;
+    }
+
+    #stopBtn:hover:not(:disabled) {
+      background-color: #a50e0e;
+    }
+
+    #restartBtn {
+      background-color: #f1f3f4;
+      color: #3c4043;
+    }
+
+    #restartBtn:hover:not(:disabled) {
+      background-color: #dadce0;
+    }
+
+    #exportBtn {
+      background-color: #188038;
+      color: white;
+      margin-top: 5px;
+    }
+
+    #exportBtn:hover:not(:disabled) {
+      background-color: #137333;
+    }
+
+    .status-container {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 12px;
+    }
+
+    .status-label {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    #statusText {
+      color: #5f6368;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .badge.active {
+      background-color: #e6f4ea;
+      color: #137333;
+    }
+
+    .badge.inactive {
+      background-color: #fce8e6;
+      color: #c5221f;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>GMeet Attendance</h2>
+
+  <div class="control-group">
+    <input type="text" id="meetingName" placeholder="Meeting Name (Optional)" />
+
+    <div class="btn-row">
+      <button id="startBtn">Start</button>
+      <button id="resumeBtn" style="display:none; background-color: #1a73e8; color: white;">Resume</button>
+      <button id="stopBtn" disabled>Stop</button>
+    </div>
+
+    <button id="restartBtn">Restart Session</button>
+    <button id="exportBtn">Export to CSV</button>
+  </div>
+
+  <div class="status-container">
+    <span class="status-label">Status:</span>
+    <span id="statusIndicator" class="badge inactive">Stopped</span>
+    <div style="margin-top: 5px;">
+      <span class="status-label">Count:</span>
+      <span id="countText">0</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
